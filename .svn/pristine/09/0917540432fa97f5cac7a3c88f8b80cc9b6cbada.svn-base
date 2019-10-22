@@ -1,0 +1,40 @@
+% Sublots and heatmaps
+
+%% Subplots for visualizing dynamics
+figure(1)
+
+for i=1:10
+   
+    for j=1:10
+        
+        ind = 10*(i-1)+j;
+        subplot(10,10,ind)
+        
+        semilogy(t,Simdata(i,j).S);
+        hold on
+        semilogy(t,Simdata(i,j).R);
+        
+    end
+end
+
+%% Heatmaps of resistant fraction
+figure(2)
+
+T = 500; % time index of interest
+
+ratio=zeros(10,10);
+
+for i=1:10 % z 
+    for j=1:10 % gamma
+        ratio(i,j) = Simdata(i,j).R(T) / (Simdata(i,j).R(T) + Simdata(i,j).S(T));
+    end
+end
+
+% heatmap(z_vec,gamma_vec,ratio)
+imagesc(ratio)
+
+title('Resistant fraction')
+xlabel('z')
+ylabel('\gamma')
+
+

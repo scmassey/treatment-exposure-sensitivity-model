@@ -1,0 +1,17 @@
+% Sublots before heatmaps
+
+figure(1)
+
+for i=1:10
+   
+    for j=1:10
+        
+        ind = 10*(i-1)+j;
+        subplot(10,10,ind)
+        
+        plot(t,Simdata(i,j).S);
+        hold on
+        plot(t,Simdata(i,j).R);
+        
+    end
+end

@@ -1,0 +1,40 @@
+% Runs simulations of the BLI model for various parameter combinations
+
+
+%% Specify time and fixed parameter values
+
+% Specify time length for simulations 
+stepsize=.1;
+t=0:stepsize:56; % days
+
+% Specify fixed parameters for cells (vals for drug defined in model fcn):
+C0  = 10^6;
+q   = 10^-5;
+rho = 0.3;
+muS = 3; 
+
+unvaried = [C0,q,rho,muS];
+
+%% Specify varied parameters and run simulations
+
+% Specify parameters to be varied for the heatmaps:
+
+z_vec = linspace(0.1,1,10);
+gamma_vec = linspace(0.1,1,10);
+
+Simdata = struct;
+
+for i=1:length(z_vec)
+    
+    z=z_vec(i);
+   
+    for j=1:length(gamma_vec)
+        
+        gamma=gamma_vec(j);
+        
+        varied = [z,gamma];
+        
+        [Simdata(i,j).S,Simdata(i,j).R] = BLImodel(t,unvaried,varied);
+        
+    end
+end

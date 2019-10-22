@@ -1,0 +1,25 @@
+function [S,R] = BLImodel(t,unvaried,varied)
+
+
+C0  = unvaried(1);
+q   = unvaried(2);
+rho = unvaried(3);
+mu_s= unvaried(4);
+
+z = varied(1);
+gamma = varied(2);
+
+decayRate = log(2)/7;
+dose=0.1;
+doseTime=7;
+totalpulses=floor((t(end))/doseTime); % Total number of pulses
+doses=ones(1,totalpulses)*dose;
+
+int_A=zeros(size(t)); % initializing the integral of A(t) values vector
+
+for p=1:length(doses) % loop through pulses
+    int_A=int_A+ doses(p).*(2^p).*((exp(-decayRate*7*p)-exp(-decayRate*t))/decayRate).*heaviside(t-7*p);
+end
+
+S = C0*(1-q)*exp(rho.*t - gamma*mu_s.*int_A);
+R = C0*q    *exp(rho.*t - gamma*z*mu_s.*int_A);
