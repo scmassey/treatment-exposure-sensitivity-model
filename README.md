@@ -1,4 +1,4 @@
-# treatment-exposure-sensitivity-model
+# treatment-exposure-sensitivity model
 
 This repository contains code to run the model simulations in Massey, et al. "Quantifying glioblastoma drug response dynamics incorporating resistance and blood brain barrier penetrance from experimental data." (currently under review, preprint available on bioRxiv doi link here)
 
@@ -9,4 +9,3 @@ where
 which is used in BLImodel.m to generate simulation results for different parameter values when called by SimsExploringParameterSpace.m Simulation results across a range of parameters are plotted as heatmaps at a single time point using SimSubplots.m
 
 Further model development details, parameter defitions, and analysis of results are provided in the manuscript, along with analysis of the results. For details on parameter sensitivity analysis, see the repository [model-sensitivity-analysis](https://github.com/scmassey/model-sensitivity-analysis). 
-# treatment-exposure-sensitivity-model
